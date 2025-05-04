@@ -1,0 +1,42 @@
+.image-container {
+  background-color: red;
+}
+
+.card-container {
+  width: 15rem;
+  background-color: yellow;
+  border-radius: 0.4rem;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.discount {
+  font-size: 1.5rem;
+  color: red;
+  display: flex;
+  align-items: baseline;
+}
+.mrp {
+  font-size: 1rem;
+  color: black;
+}
+.price {
+  display: flex;
+  flex-direction: column;
+}
+.percentage {
+  margin-top: -0.75rem;
+}
+.orgPrice {
+  text-decoration: line-through;
+  font-weight: 300;
+  color: gray;
+}
+sup {
+  font-size: 1rem;
+  display: flex;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
