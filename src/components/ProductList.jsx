@@ -1,26 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useFetch from "../utils/useFetch";
-import { useDispatch } from "react-redux";
-import { additems } from "../utils/productlistSlice";
+import "./ProductList.css";
 
 import ProductItem from "./ProductItem";
+import { useOutletContext } from "react-router";
 
-export default function ProductList() {
-  const dispatch = useDispatch();
-  const { data, loading, error } = useFetch("https://dummyjson.com/products");
+export default function ProductList({
+  url = "https://dummyjson.com/products?limit=0",
+}) {
+  const [products, setProducts] = useState([]);
+  const { data, loading, error } = useFetch(url);
+  const { searchQuery } = useOutletContext();
+  // if (searchQuery) {
+  //   // url = `https://dummyjson.com/products/search?q=${searchQuery}`;
+  // }
 
   useEffect(() => {
-    if (data) {
-      dispatch(additems(data));
-    }
-  }, [data]);
+    const filteredProducts = searchQuery
+      ? data.filter(
+          (item) =>
+            item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      : data;
+    setProducts(filteredProducts);
+  }, [searchQuery, data]);
+
+  console.log(products);
 
   if (loading) return <p>Loading....</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
-      {data.map((item) => (
+    <div className="product-list">
+      {products.map((item) => (
         <ProductItem item={item} key={item.id} />
       ))}
     </div>

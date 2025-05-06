@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
 import "./Header.css";
+import { useSelector } from "react-redux";
 
-export default function Header() {
+export default function Header({ setSearchQuery }) {
+  const count = useSelector((store) => store.cart.items.length);
+  const [searchInput, setSearchInput] = useState("");
+  const handleSearch = () => {
+    setSearchQuery(searchInput);
+  };
+
   return (
     <div className="header">
       <div className="logo">
@@ -10,8 +17,13 @@ export default function Header() {
         <h3>ShofyGlobe</h3>
       </div>
       <div className="search-container">
-        <input type="text" placeholder="Enter product name..." />
-        <span>icon</span>
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <button onClick={handleSearch}>icon</button>
       </div>
       <nav>
         <ul>
@@ -22,8 +34,10 @@ export default function Header() {
           <li>About Us</li>
           <li>
             <div className="container">
-              <span>Cart</span>
-              <span>Count</span>
+              <span>
+                <Link to="/cart">Cart</Link>
+              </span>
+              <span>{count}</span>
             </div>
           </li>
         </ul>
