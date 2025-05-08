@@ -1,47 +1,101 @@
-.image-container {
-  /* background-color: red; */
-}
+.product-card {
+  width: 350px;
 
-.card-container {
-  width: 15rem;
-  background-color: yellow;
-  border-radius: 0.4rem;
-  border: 2px solid black;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.product-link {
+  text-decoration: none;
+  color: #000;
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  min-height: 160px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.5rem;
+}
+.product-card p {
+  margin-bottom: 0;
+  font-size: 1.2rem;
+  margin-top: 0;
+  color: #000;
+  font-weight: lighter;
+}
+
+.product-card p:hover {
+  text-decoration: underline;
+  color: rgb(76, 76, 218);
+}
+.price-section {
+  margin-top: 0.2rem;
+  display: flex;
+
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 1.3rem;
+}
+
+.discounted-price {
+  position: relative;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.price-symbol {
+  font-size: 0.9em;
+}
+
+.price-section-2 {
+  display: flex;
   justify-content: center;
   align-items: center;
-  transition: all ease-in-out 0.3s;
+  gap: 0.5rem;
+  color: #888;
+  font-size: 0.9rem;
 }
 
-.card-container:hover {
-  transform: scale(1.08);
-}
-.discount {
-  font-size: 1.5rem;
-  color: red;
-  display: flex;
-  align-items: baseline;
-}
-.mrp {
-  font-size: 1rem;
-  color: black;
-}
-.price {
-  display: flex;
-  flex-direction: column;
-}
-.percentage {
-  margin-top: -0.75rem;
-}
-.orgPrice {
+.original-price {
   text-decoration: line-through;
-  font-weight: 300;
-  color: gray;
 }
-sup {
-  font-size: 1rem;
+
+.discount-percentage {
+  color: red;
+}
+
+.rating {
   display: flex;
-  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.add-to-cart {
   margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #165fe7;
+  border: 1px solid #092368;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #e2b33c;
 }

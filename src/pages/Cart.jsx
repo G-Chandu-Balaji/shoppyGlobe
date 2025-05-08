@@ -1,34 +1,52 @@
 import React from "react";
 import { useSelector } from "react-redux";
+
+import EmptyCart from "../components/EmptyCart";
 import CartItem from "../components/CartItem";
-import "./Cart.css";
 
-export default function Cart() {
-  const items = useSelector((store) => store.cart.items);
+export default function CartPage() {
+  const cartItems = useSelector((state) => state.cart.items);
 
-  const subtotal = (
-    items.reduce((sum, curr) => (sum = sum + curr.price * curr.quantity), 0) *
-    84
-  ).toFixed(2);
+  const totalAmount = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  const totalDiscount = cartItems.reduce(
+    (acc, item) =>
+      acc + ((item.discountPercentage || 0) / 100) * item.price * item.quantity,
+    0
+  );
+  const finalAmount = totalAmount - totalDiscount;
 
   return (
-    <div className="cart-layout">
-      <div className="cart-item-list-container">
-        <div className="cart-item-list">
-          {items.map((item) => (
-            <CartItem item={item} key={item.id} />
-          ))}
-        </div>
+    <div className="cart-page">
+      <h1>Your Shopping Cart</h1>
+      {cartItems.length === 0 ? (
         <div>
-          Subtotal{""} ({items.length}items) :{subtotal}{" "}
+          {" "}
+          <EmptyCart />{" "}
         </div>
-      </div>
-      <div className="subtotal-container">
-        <p>
-          Subtotal{""} ({items.length}items) :{subtotal}{" "}
-        </p>
-        <button>Proceed to buy</button>
-      </div>
+      ) : (
+        <div className="cart-container">
+          <div className="cart-items">
+            {cartItems.map((item) => (
+              <CartItem item={item} key={item.id} />
+            ))}
+          </div>
+
+          <div className="cart-summary">
+            <h2>Subtotal ({cartItems.length} items):</h2>
+            <p className="total">${totalAmount.toFixed(2)}</p>
+            <p className="discount-amount">
+              Discount: -${totalDiscount.toFixed(2)}
+            </p>
+            <p className="final-amount">
+              Final Total: ${finalAmount.toFixed(2)}
+            </p>
+            <button className="checkout-btn">Proceed to Checkout</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

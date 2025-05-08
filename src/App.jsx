@@ -6,14 +6,23 @@ import NotFound from "./pages/NotFound";
 import Product_Detail from "./pages/Product_Detail";
 
 import Layout from "./components/Layout";
+import CheckoutPage from "./pages/CheckOut";
+import ProductList from "./components/ProductList";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+
         <Route path="cart" element={<Cart />} />
-        <Route path="product_detail/:id" element={<Product_Detail />} />
+        <Route path="products" element={<ProductList />} />
+
+        <Route
+          path="/products/product_detail/:id"
+          element={<Product_Detail />}
+        />
+        <Route path="checkout" element={<CheckoutPage />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

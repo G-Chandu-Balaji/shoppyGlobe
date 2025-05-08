@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 
-const useFetch = (url) => {
+const useFetch = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!url) return;
+    // if (!) return;
     const controller = new AbortController(); // to clean up fetch on unmount
 
     async function fetchurl() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(url, { signal: controller.signal });
+        const res = await fetch("https://dummyjson.com/products?limit=0", {
+          signal: controller.signal,
+        });
         if (!res.ok) {
           throw new Error(`Error: ${res.status}`);
         }
@@ -30,7 +32,7 @@ const useFetch = (url) => {
     }
     fetchurl();
     return () => controller.abort(); // cleanup
-  }, [url]);
+  }, []);
 
   return { data, loading, error };
 };

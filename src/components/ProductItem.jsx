@@ -1,40 +1,62 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ProductItem.css";
 import { useDispatch } from "react-redux";
-
 import { addItem } from "../utils/cartSlice";
-import { Link } from "react-router";
+import StarRating from "./StarRating";
 
-export default function ProductItem({ item }) {
+const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-  const price = (item.price * 84).toFixed(2);
-  const orignalPrice = ((item.discountPercentage + 100) * price) / 100;
+
+  const discountedPrice = product.price;
+  const discountPercent = product.discountPercentage;
+  const originalPrice = (discountedPrice / (1 - discountPercent / 100)).toFixed(
+    2
+  );
 
   function handleadditem() {
-    dispatch(addItem(item));
+    dispatch(addItem(product));
     console.log("added to cart");
   }
+
   return (
-    <div className="card-container">
-      <div className="image-container">
-        <img src={`${item.thumbnail}`} alt="thumnail" />
-      </div>
-      <div>
-        <Link to={`product_detail/${item.id}`}>
-          <p>{item.title}</p>
-        </Link>
-        <p>{item.rating}</p>
-        <div className="price">
-          <span className="discount">
-            <sup>&#8377;</sup> {price}
-            <span className="mrp">
-              M.R.P: <span className="orgPrice">{orignalPrice.toFixed(2)}</span>
-            </span>
+    <div className="product-card">
+      <Link
+        to={`/products/product_detail/${product.id}`}
+        className="product-link"
+      >
+        <img src={product.thumbnail} alt={product.title} />
+        <p>{product.title}</p>
+        <div className="price-section">
+          <span className="discount-percentage">
+            - {""}
+            {discountPercent}%
           </span>
-          <span className="percentage">({item.discountPercentage}% off)</span>
+          <span className="discounted-price">
+            <span className="price-symbol">₹</span>
+            {discountedPrice}
+          </span>
         </div>
-      </div>
-      <button onClick={handleadditem}>Add to Cart</button>
+        <div className="price-section-2">
+          M.R.P :
+          <span className="original-price">
+            <span className="price-symbol">₹</span>
+            {originalPrice}
+          </span>
+        </div>
+        <div className="rating">
+          {" "}
+          {product.rating.toFixed(1)}{" "}
+          <div>
+            <StarRating rating={product.rating} />
+          </div>
+        </div>
+      </Link>
+      <button className="add-to-cart" onClick={handleadditem}>
+        Add to Cart
+      </button>
     </div>
   );
-}
+};
+
+export default ProductCard;
