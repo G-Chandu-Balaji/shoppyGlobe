@@ -1,9 +1,14 @@
 .product-detail-page {
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-columns: 1.5fr 1.5fr 0.5fr;
   gap: 2rem;
   padding: 2rem;
   background-color: #fff;
+  margin: 1rem;
+}
+
+.left-section {
+  display: flex;
 }
 
 .main-image img {
@@ -13,8 +18,10 @@
 
 .image-gallery {
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   margin-top: 1rem;
+  min-width: 5rem;
 }
 
 .image-gallery img {
@@ -25,9 +32,13 @@
   border-radius: 0.25rem;
 }
 
-.title {
-  font-size: 1.75rem;
-  font-weight: 600;
+.middle-section {
+}
+
+.middle-section .title {
+  font-size: 1.7rem;
+  font-weight: lighter;
+  color: rgb(52, 45, 45);
 }
 
 .brand,
@@ -35,13 +46,29 @@
 .description,
 .stock,
 .category {
-  margin-top: 0.5rem;
+  /* margin-top: 0.5rem; */
 }
 
-.price {
+.right-section {
+  width: 18vw;
+  margin-inline: auto;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.right-section p {
+  padding: 0;
+  margin: 0;
+}
+
+.right-section .price-section1 {
   font-size: 1.5rem;
-  color: #b12704;
-  font-weight: bold;
+  display: flex;
+  justify-content: left;
+  color: black;
+}
+.right-section .price-section1 .price {
+  font-size: 1.5rem;
 }
 
 .buy-now,
@@ -70,20 +97,85 @@
   margin-top: 0.5rem;
 }
 
-.review-section {
-  grid-column: 1 / -1;
-  margin-top: 3rem;
-  border-top: 1px solid #ddd;
-  padding-top: 1.5rem;
+.middle-section .head,
+.middle {
+  border-bottom: 1px solid gray;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.review {
+.middle-section .head .rating {
+  justify-content: start;
+  font-size: 0.8rem;
+}
+
+.middle-section .middle {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  gap: 0.2rem;
+}
+
+.limited-deal {
+  padding: 0.1rem 0.5rem;
+  background-color: #e5061d;
+  color: white;
+  border-radius: 0.2rem;
+}
+.middle-section .middle .discount-percentage,
+.discounted-price {
+  font-size: larger;
+}
+.middle-section .middle .discount-percentage {
+  font-weight: 200;
+  color: rgba(255, 0, 0, 0.573);
+}
+
+.middle-section .middle .discounted-price {
+  font-weight: 500;
+}
+.middle-section .foot {
+  text-transform: capitalize;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.review-section {
+  margin-top: 3rem;
+  border-top: 1px solid #ddd;
+  /* padding-top: 1rem; */
+}
+.review-section h3 {
+  font-weight: 400;
+  padding: 0.5rem;
+  font-size: 1.8rem;
+  padding-bottom: 0.7rem;
+}
+
+.review-section .review {
   margin-bottom: 1rem;
   border-bottom: 1px solid #eee;
   padding-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 300;
 }
 
 .loader {
   padding: 2rem;
   text-align: center;
+}
+
+.user-name {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.user-review {
+  display: flex;
+  gap: 0.5rem;
+  padding-left: 2rem;
+}
+.text-review {
+  padding-left: 2rem;
 }

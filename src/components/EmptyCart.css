@@ -16,18 +16,18 @@
   animation: pulse 2s infinite;
 }
 
-h2 {
+.empty-cart-container h2 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
-p {
+.empty-cart-container p {
   font-size: 1rem;
   color: #666;
   margin-bottom: 1.5rem;
 }
 
-button {
+.empty-cart-container button {
   padding: 0.75rem 1.5rem;
   background: #333;
   color: #fff;
@@ -38,7 +38,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.empty-cart-container button:hover {
   background-color: #555;
 }
 

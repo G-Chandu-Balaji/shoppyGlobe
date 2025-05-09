@@ -7,12 +7,12 @@
   background-color: #fff;
 }
 
-.bag-icon {
+.spinner-container .bag-icon {
   font-size: 4rem;
   animation: bounce 1.5s infinite ease-in-out;
 }
 
-p {
+.spinner-container p {
   margin-top: 1rem;
   font-size: 1.25rem;
   color: #555;
