@@ -14,6 +14,10 @@
 .item-details {
   flex: 1;
 }
+.item-details h4 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
 
 .cart-item .price {
   font-size: 1rem;
@@ -34,10 +38,35 @@
 }
 
 .quantity-controls button {
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0;
   border: none;
   padding: 0.5rem;
+  cursor: pointer; */
+  background-color: rgba(128, 128, 128, 0.247);
+  color: black;
+
+  border: none;
   cursor: pointer;
+
+  font-size: 18px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 50%;
+  transition: all 0.5s ease-in-out;
+}
+
+.quantity-controls button:hover {
+  background-color: rgba(128, 128, 128, 0.5);
+  transform: scale(1.1);
+}
+
+.quantity-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .remove-btn {

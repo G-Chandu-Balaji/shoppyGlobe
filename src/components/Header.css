@@ -3,8 +3,17 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  margin-inline: 1rem;
+
+  padding-inline: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.header .title {
+  background: linear-gradient(to bottom right, blue, green);
+  background-clip: text;
+
+  color: transparent;
 }
 
 .logo {
@@ -20,9 +29,40 @@ nav ul {
 }
 nav ul li {
   padding: 0.25rem;
+  position: relative;
+}
+
+li .active {
+  background-color: lightgreen;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+nav ul li::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #007bff;
+  transform: translateX(-50%);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+nav ul li:hover::after {
+  width: 100%;
+  right: 0;
+}
+nav ul li .active::after {
+  width: 100%;
+  right: 0;
 }
 
 nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 .search-bar {
   margin-right: auto;
@@ -37,6 +77,13 @@ nav {
   border: none;
   padding: 0.5rem;
   outline: none;
+  border-bottom-left-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+}
+.search-bar input:active,
+.search-bar input:focus {
+  background-color: rgba(238, 233, 233, 0.789);
+  border: 3px solid blue;
 }
 
 .search-bar button {
@@ -46,15 +93,18 @@ nav {
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
-.cart-container {
+
+.header .cart-container {
   display: flex;
-  /* position: relative; */
 }
-.cart-icon {
+.header .cart-icon {
   position: relative;
 }
+.header .cart-icon:hover {
+  transform: scale(1.1);
+}
 
-.count {
+.header .count {
   align-self: flex-start;
   position: absolute;
   top: -1rem;

@@ -9,7 +9,7 @@ const StarRating = ({ rating, maxStars = 5 }) => {
       index < fullStarIndex || (isHalfStar && rating % 1 >= 0.5);
 
     if (isFullStar) {
-      return <AiFillStar key={index} style={{ color: "gold" }} />;
+      return <AiFillStar key={index} style={{ color: "gold" }} size={20} />;
     } else if (isHalfStar) {
       return (
         <div
@@ -47,7 +47,7 @@ const StarRating = ({ rating, maxStars = 5 }) => {
         </div>
       );
     } else {
-      return <AiOutlineStar key={index} style={{ color: "gray" }} />;
+      return <AiOutlineStar key={index} style={{ color: "gray" }} size={20} />;
     }
   };
 

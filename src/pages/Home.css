@@ -3,31 +3,29 @@
 .hero-section {
   text-align: center;
   margin-bottom: 4rem;
-  animation: fadeInSlide 1s ease-in-out;
 }
 
 .hero-section h1 {
   font-size: 3rem;
   font-weight: 800;
-  color: #1f2937;
-}
-
-.hero-section h1 span {
-  color: #2563eb;
-
-  font-family: "Inspiration", cursive;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 100px;
+  background: linear-gradient(to right, blue, green);
+  background-clip: text;
+  color: transparent;
+  animation: SlideRight 1s;
 }
 
 .hero-section p {
+  opacity: 0;
+  font-style: italic;
   color: #4b5563;
   font-size: 1.125rem;
   margin: 1rem 0;
+  animation: SlideLeft 1s ease-out forwards;
+  animation-delay: 2s;
 }
 
 .shop-button {
+  opacity: 0;
   background-color: #2563eb;
   color: white;
   border: none;
@@ -36,20 +34,52 @@
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  animation: appear 2s ease-out forwards;
+  animation-delay: 3s;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .shop-button:hover {
   background-color: #1e40af;
 }
 
-@keyframes fadeInSlide {
-  from {
+@keyframes SlideRight {
+  0% {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translatex(-300px);
   }
-  to {
+  90% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translatex(30px);
+  }
+  100% {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+}
+@keyframes SlideLeft {
+  0% {
+    opacity: 0;
+    transform: translatex(300px);
+  }
+  90% {
+    opacity: 1;
+    transform: translatex(-30px);
+  }
+  100% {
+    opacity: 1;
+
+    transform: translatex(0);
   }
 }
 
@@ -78,21 +108,33 @@
   z-index: 1;
 }
 
-.typewriter span {
-  display: block;
+.typewriter {
+  opacity: 0;
+  font-family: "Inspiration", cursive;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 100px;
+  background: linear-gradient(to right, blue, green);
+  background-clip: text;
+  color: transparent;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   /* border-right: 3px solid red; The typewriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Centers the text */
   letter-spacing: 6px; /* Adjusts spacing between letters */
-  animation: typing 4.5s steps(40, end), blink-caret 0.75s;
+  animation: typing 4.5s steps(40, end) forwards, blink-caret 0.75s;
+  animation-delay: 1s;
+  /* animation-timing-function: ease-out; */
+  /* animation-fill-mode: forwards; */
 }
 
 @keyframes typing {
   from {
+    opacity: 1;
     width: 0;
   }
   to {
+    opacity: 1;
     width: 70%;
   }
 }

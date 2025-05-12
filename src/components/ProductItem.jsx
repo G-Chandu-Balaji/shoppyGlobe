@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ProductItem.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 import StarRating from "./StarRating";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-
+  const items = useSelector((state) => state.cart.items);
   const discountedPrice = product.price;
   const discountPercent = product.discountPercentage;
   const originalPrice = (discountedPrice / (1 - discountPercent / 100)).toFixed(
@@ -16,7 +16,6 @@ const ProductCard = ({ product }) => {
 
   function handleadditem() {
     dispatch(addItem(product));
-    console.log("added to cart");
   }
 
   return (

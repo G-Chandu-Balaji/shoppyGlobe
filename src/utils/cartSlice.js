@@ -9,11 +9,26 @@ const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const newItem = action.payload;
-      const existingitem = state.items.find((i) => i.id === newItem.id);
+      console.log("inside redux", newItem);
+      let existingitem = state.items.find((i) => i.id === newItem.id);
       if (existingitem) {
-        existingitem.quantity += 1;
+        if (!newItem.quantity) {
+          existingitem = {
+            ...existingitem,
+            quantity: action.payload.minimumOrderQuantity,
+          };
+        }
+        existingitem.quantity = action.payload.quantity;
       } else {
-        state.items.unshift({ ...action.payload, quantity: 1 });
+        if (!newItem.quantity) {
+          state.items.unshift({
+            ...action.payload,
+            quantity: newItem.minimumOrderQuantity,
+            Newprice: (newItem.price * newItem.minimumOrderQuantity).toFixed(2),
+          });
+        } else {
+          state.items.unshift({ ...action.payload });
+        }
       }
     },
     removeItem: (state, action) => {
@@ -27,6 +42,7 @@ const cartSlice = createSlice({
       const item = state.items.find((i) => i.id === id);
       if (item) {
         item.quantity += 1;
+        item.Newprice = (item.quantity * item.price).toFixed(2);
       }
     },
     decreaseQuantity: (state, action) => {
@@ -35,6 +51,7 @@ const cartSlice = createSlice({
       if (item) {
         if (item.quantity > 1) {
           item.quantity -= 1;
+          item.Newprice = (item.quantity * item.price).toFixed(2);
         }
       }
     },

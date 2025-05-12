@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "./QuantityButton.css";
 
-const QuantityInput = ({ min = 1, max = 10, initialValue = 1 }) => {
-  const [quantity, setQuantity] = useState(initialValue);
+const QuantityInput = ({
+  min = 1,
+  max = 10,
 
+  quantity,
+  setQuantity,
+}) => {
   const handleIncrease = () => {
     if (quantity < max) setQuantity(quantity + 1);
   };

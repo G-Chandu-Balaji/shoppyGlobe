@@ -1,33 +1,63 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import "./Product_Detail.css";
 import LoadingSpinner from "../components/LoadingSpinner";
 import QuantityInput from "../components/QuantityButton";
 import StarRating from "../components/StarRating";
 import { FaRegUserCircle } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
+  const items = useSelector((state) => state.cart.items);
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [newprice, setNewPrice] = useState(1);
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    async function fetchProduct() {
-      try {
-        const res = await fetch(`https://dummyjson.com/products/${id}`);
-        const data = await res.json();
-        setProduct(data);
+    if (items.length > 0) {
+      const item = items.filter((ele) => ele.id == id)[0];
+      if (item) {
+        setQuantity(item.quantity);
+        setProduct(item);
+        setNewPrice(item.Newprice);
         setLoading(false);
-      } catch (error) {
-        console.error("Error fetching product:", error);
       }
+    } else {
+      async function fetchProduct() {
+        try {
+          const res = await fetch(`https://dummyjson.com/products/${id}`);
+          const data = await res.json();
+          setProduct(data);
+          setQuantity(data.minimumOrderQuantity);
+          setNewPrice(data.price);
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching product:", error);
+        }
+      }
+      fetchProduct();
     }
-    fetchProduct();
-  }, [id]);
+  }, [id, items]);
 
   function handleImage(img) {
     setImage(img);
+  }
+
+  function handleaddItem() {
+    const item = {
+      ...product,
+      Newprice: (newprice * quantity).toFixed(2),
+      quantity: quantity,
+    };
+    dispatch(addItem(item));
+    navigate("/cart");
   }
 
   if (loading)
@@ -103,7 +133,7 @@ export default function ProductDetailPage() {
         <p className="price-section1">
           <span className="price-symbol">₹</span>
 
-          <span className="price">{product.price}</span>
+          <span className="price">{(newprice * quantity).toFixed(2)}</span>
         </p>
         <p>{product.shippingInformation}</p>
         {product.stock > 0 ? (
@@ -116,21 +146,24 @@ export default function ProductDetailPage() {
           <QuantityInput
             min={product.minimumOrderQuantity}
             max={product.stock}
-            initialValue={product.minimumOrderQuantity}
+            quantity={quantity}
+            setQuantity={setQuantity}
           />
         </div>
 
         <button className="buy-now">Buy Now</button>
-        <button className="add-to-cart">Add to Cart</button>
+        <button className="add-to-cart" onClick={() => handleaddItem()}>
+          Add to Cart
+        </button>
         <p className="secure-transaction">Secure transaction</p>
       </div>
 
       <div className="review-section">
         <h3>Customer Reviews</h3>
         <div className="reviews">
-          {product.reviews.map((ele) => {
+          {product.reviews.map((ele, index) => {
             return (
-              <div className="review">
+              <div className="review" key={index}>
                 <div className="user-name">
                   <FaRegUserCircle />
                   <p>{ele.reviewerName}</p>

@@ -4,7 +4,7 @@
   margin: 0 auto;
 }
 
-.cart-container {
+.cart-page .cart-container {
   display: flex;
   gap: 2rem;
 }

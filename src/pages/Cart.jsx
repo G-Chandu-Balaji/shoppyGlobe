@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import EmptyCart from "../components/EmptyCart";
 import CartItem from "../components/CartItem";
+import "./Cart.css";
 
 export default function CartPage() {
   const cartItems = useSelector((state) => state.cart.items);
@@ -20,7 +21,7 @@ export default function CartPage() {
 
   return (
     <div className="cart-page">
-      <h1>Your Shopping Cart</h1>
+      <h3>Your Shopping Cart</h3>
       {cartItems.length === 0 ? (
         <div>
           {" "}
@@ -36,12 +37,12 @@ export default function CartPage() {
 
           <div className="cart-summary">
             <h2>Subtotal ({cartItems.length} items):</h2>
-            <p className="total">${totalAmount.toFixed(2)}</p>
+            <p className="total">₹{totalAmount.toFixed(2)}</p>
             <p className="discount-amount">
-              Discount: -${totalDiscount.toFixed(2)}
+              Discount: -₹{totalDiscount.toFixed(2)}
             </p>
             <p className="final-amount">
-              Final Total: ${finalAmount.toFixed(2)}
+              Final Total: ₹{finalAmount.toFixed(2)}
             </p>
             <button className="checkout-btn">Proceed to Checkout</button>
           </div>

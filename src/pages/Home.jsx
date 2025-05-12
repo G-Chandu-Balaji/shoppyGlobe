@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductList from "../components/ProductList";
 import "./Home.css";
 import CategorySection from "../components/Categories";
+import { Link } from "react-router";
 
 const carouselImages = ["/image-1.jpg", "/image-2.jpg", "/image-3.jpg"];
 
@@ -18,15 +19,12 @@ export default function Home() {
   return (
     <>
       <div className="hero-section">
-        <h1>
-          Welcome to{" "}
-          <div className="typewriter">
-            {" "}
-            <span>ShoppyGlobe</span>
-          </div>
-        </h1>
+        <h1>Welcome to </h1>
+        <div className="typewriter">ShoppyGlobe</div>
         <p>Your one-stop shop for everything trendy and essential</p>
-        <button className="shop-button">Start Shopping</button>
+        <button className="shop-button">
+          <Link to="/products">Start Shopping</Link>
+        </button>
       </div>
 
       <div className="carousel">

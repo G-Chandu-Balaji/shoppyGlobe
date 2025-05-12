@@ -13,7 +13,7 @@ const EmptyCart = () => {
       </div>
       <h2>Your cart is empty!</h2>
       <p>Looks like you haven't added anything to your cart yet.</p>
-      <button onClick={() => navigate("/")}>Explore Products</button>
+      <button onClick={() => navigate("/products")}>Explore Products</button>
     </div>
   );
 };
