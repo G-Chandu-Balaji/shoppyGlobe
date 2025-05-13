@@ -6,7 +6,7 @@ import QuantityInput from "../components/QuantityButton";
 import StarRating from "../components/StarRating";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../utils/cartSlice";
+import { addItem, addOrder } from "../utils/cartSlice";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -59,6 +59,15 @@ export default function ProductDetailPage() {
     dispatch(addItem(item));
     navigate("/cart");
   }
+  function handleBuynow() {
+    const item = {
+      ...product,
+      Newprice: (newprice * quantity).toFixed(2),
+      quantity: quantity,
+    };
+    dispatch(addOrder(item));
+    navigate("/checkout");
+  }
 
   if (loading)
     return (
@@ -102,7 +111,7 @@ export default function ProductDetailPage() {
             </span>
             <span className="discounted-price">
               <span className="price-symbol">₹</span>
-              {product.price}
+              {product.price} <span className="text-afterprice">/per item</span>
             </span>
           </div>
           <div className="price-section-2">
@@ -122,7 +131,7 @@ export default function ProductDetailPage() {
           <p>{product.brand}</p>
 
           <p>Product Dimensions</p>
-          <p>{`${product.dimensions.width} x ${product.dimensions.height} x ${product.dimensions.depth}`}</p>
+          <p>{`${product.dimensions.width}cm x ${product.dimensions.height}cm x ${product.dimensions.depth}cm`}</p>
           <p>weight</p>
           <p>{product.weight}gms</p>
           <p>Warranty</p>
@@ -151,7 +160,9 @@ export default function ProductDetailPage() {
           />
         </div>
 
-        <button className="buy-now">Buy Now</button>
+        <button className="buy-now" onClick={() => handleBuynow()}>
+          Buy Now
+        </button>
         <button className="add-to-cart" onClick={() => handleaddItem()}>
           Add to Cart
         </button>

@@ -76,3 +76,12 @@
   margin-top: 0.5rem;
   cursor: pointer;
 }
+.remove-btn:hover {
+  text-decoration: underline;
+  color: rgb(170, 3, 3);
+  font-weight: bold;
+}
+
+.item-details .price-section-2 {
+  justify-content: flex-start;
+}

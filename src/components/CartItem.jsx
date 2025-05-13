@@ -26,6 +26,16 @@ export default function CartItem({ item }) {
             <span className="discount"> ({item.discountPercentage}% off)</span>
           )}
         </p>
+        <div className="price-section-2">
+          M.R.P :
+          <span className="original-price">
+            <span className="price-symbol">₹</span>
+            {(
+              (item.price / (1 - item.discountPercentage / 100)) *
+              item.quantity
+            ).toFixed(2)}
+          </span>
+        </div>
         <div className="quantity-controls">
           <button
             onClick={() => dispatch(decreaseQuantity(item.id))}
@@ -46,7 +56,7 @@ export default function CartItem({ item }) {
           className="remove-btn"
           onClick={() => dispatch(removeItem(item.id))}
         >
-          Remove
+          Delete
         </button>
       </div>
     </div>

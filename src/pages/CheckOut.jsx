@@ -1,79 +1,123 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import "./CheckOut.css";
+import { addUserData } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
 export default function CheckoutPage() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    address: "",
-    cardNumber: "",
-    expiry: "",
-    cvc: "",
-  });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Payment submitted successfully!");
+  const onSubmit = (data) => {
+    console.log(data); // Handle form data here
+    dispatch(addUserData(data));
+    alert("order submitted successfully!");
+    navigate("/confirmOrder");
   };
 
   return (
     <div className="checkout-page">
       <h2>Checkout</h2>
-      <form onSubmit={handleSubmit} className="checkout-form">
+      <form onSubmit={handleSubmit(onSubmit)} className="checkout-form">
         <label>Name</label>
-        <input name="name" value={form.name} onChange={handleChange} required />
+        <input
+          type="text"
+          {...register("name", { required: "Name is required" })}
+          className={errors.name ? "input-error" : ""}
+        />
+        {errors.name && (
+          <span className="error-message">{errors.name.message}</span>
+        )}
 
         <label>Email</label>
         <input
           type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          required
+          {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^\S+@\S+$/i,
+              message: "Invalid email address",
+            },
+          })}
+          className={errors.email ? "input-error" : ""}
         />
+        {errors.email && (
+          <span className="error-message">{errors.email.message}</span>
+        )}
 
         <label>Shipping Address</label>
         <textarea
-          name="address"
-          value={form.address}
-          onChange={handleChange}
-          required
+          {...register("address", { required: "Address is required" })}
+          className={errors.address ? "input-error" : ""}
         />
+        {errors.address && (
+          <span className="error-message">{errors.address.message}</span>
+        )}
 
         <label>Card Number</label>
         <input
-          type="text"
-          name="cardNumber"
-          value={form.cardNumber}
-          onChange={handleChange}
-          required
+          type="number"
+          {...register("cardNumber", {
+            required: "Card number is required",
+            minLength: {
+              value: 12,
+              message: "Card number must be at least 12 digits",
+            },
+            maxLength: {
+              value: 19,
+              message: "Card number cannot exceed 19 digits",
+            },
+          })}
+          className={errors.cardNumber ? "input-error" : ""}
         />
+        {errors.cardNumber && (
+          <span className="error-message">{errors.cardNumber.message}</span>
+        )}
 
         <div className="card-details">
           <div>
             <label>Expiry</label>
             <input
               type="text"
-              name="expiry"
-              value={form.expiry}
-              onChange={handleChange}
-              required
+              {...register("expiry", {
+                required: "Expiry date is required",
+                pattern: {
+                  value: /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/,
+                  message: "Invalid expiry date",
+                },
+              })}
+              className={errors.expiry ? "input-error" : ""}
             />
+            {errors.expiry && (
+              <span className="error-message">{errors.expiry.message}</span>
+            )}
           </div>
           <div>
             <label>CVC</label>
             <input
-              type="text"
-              name="cvc"
-              value={form.cvc}
-              onChange={handleChange}
-              required
+              type="password"
+              {...register("cvc", {
+                required: "CVC is required",
+                minLength: {
+                  value: 3,
+                  message: "CVC must be at least 3 digits",
+                },
+                maxLength: {
+                  value: 4,
+                  message: "CVC cannot exceed 4 digits",
+                },
+              })}
+              className={errors.cvc ? "input-error" : ""}
             />
+            {errors.cvc && (
+              <span className="error-message">{errors.cvc.message}</span>
+            )}
           </div>
         </div>
 

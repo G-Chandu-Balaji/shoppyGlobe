@@ -1,0 +1,62 @@
+.confirm-order {
+  padding: 20px;
+  margin: 1rem;
+}
+
+.confirm-order .confirm-order-container {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-evenly;
+}
+.confirm-order h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(green, black);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.user-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.confirm-order h4 {
+  font-size: 1.2rem;
+}
+
+.confirm-order .user-details {
+  flex: 1;
+  padding: 1rem;
+
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.confirm-order .cart-items {
+  flex: 1;
+  align-self: start;
+  padding: 1rem;
+
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.confirm-order section {
+  margin-bottom: 20px;
+}
+
+.confirm-order button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.2rem;
+}
+
+.confirm-order button:hover {
+  background-color: #45a049;
+  transform: scale(1.1);
+}

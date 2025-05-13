@@ -35,10 +35,13 @@ textarea {
 .checkout-page .card-details {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
 .card-details div {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .checkout-page button {
@@ -54,4 +57,17 @@ textarea {
 
 .checkout-page button:hover {
   background-color: #1e40af;
+}
+
+.input-error {
+  border: 2px solid red;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  padding-left: 0.2rem;
+  font-size: 0.875rem;
+  margin-bottom: 10px;
+  display: block;
 }

@@ -8,6 +8,7 @@ import Product_Detail from "./pages/Product_Detail";
 import Layout from "./components/Layout";
 import CheckoutPage from "./pages/CheckOut";
 import ProductList from "./components/ProductList";
+import ConfirmOrder from "./pages/confirmOrder";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           element={<Product_Detail />}
         />
         <Route path="checkout" element={<CheckoutPage />} />
+        <Route path="confirmOrder" element={<ConfirmOrder />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
