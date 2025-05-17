@@ -1,0 +1,54 @@
+.order-confirmed {
+  margin-top: 0.5rem;
+
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-confirmed .content {
+  margin: 2rem;
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+}
+
+.order-confirmed .check-icon {
+  width: 50px;
+  height: 50px;
+  fill: #28a745;
+  margin-bottom: 20px;
+}
+
+.order-confirmed h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.order-confirmed p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.order-confirmed .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.order-confirmed .btn:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}

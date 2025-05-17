@@ -12,7 +12,8 @@
 
 /* Base font scaling (affects rem units) */
 html {
-  font-size: clamp(15px, 1.5vw, 18px);
+  /* font-size: clamp(15px, 1.5vw, 18px); */
+  font-size: 16px;
 }
 
 body {

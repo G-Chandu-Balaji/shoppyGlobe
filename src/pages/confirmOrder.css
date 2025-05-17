@@ -1,10 +1,14 @@
 .confirm-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
-  margin: 1rem;
+  margin: 1rem auto;
 }
 
 .confirm-order .confirm-order-container {
-  display: flex;
+  /* display: flex; */
   gap: 0.5rem;
   justify-content: space-evenly;
 }
@@ -24,10 +28,10 @@
 
 .confirm-order h4 {
   font-size: 1.2rem;
+  color: rgb(13, 88, 22);
 }
 
 .confirm-order .user-details {
-  flex: 1;
   padding: 1rem;
 
   border: 1px solid #ddd;
@@ -35,8 +39,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .confirm-order .cart-items {
-  flex: 1;
-  align-self: start;
   padding: 1rem;
 
   border: 1px solid #ddd;
@@ -47,7 +49,8 @@
   margin-bottom: 20px;
 }
 
-.confirm-order button {
+.confirm-order .confirm-order-button,
+.add-item-button {
   padding: 10px 20px;
   background-color: #4caf50;
   color: white;
@@ -56,7 +59,38 @@
   border-radius: 0.2rem;
 }
 
-.confirm-order button:hover {
+.confirm-order .confirm-order-button:hover,
+.add-item-button:hover {
   background-color: #45a049;
   transform: scale(1.1);
+}
+.confirm-order .cancel-button {
+  padding: 10px 20px;
+
+  background-color: #f12217;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.2rem;
+}
+
+.cancel-button:hover {
+  background-color: #e33b21;
+  transform: scale(1.1);
+}
+
+add-item-button .grid-cart-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+.line-top {
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
 }

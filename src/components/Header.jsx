@@ -3,6 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router";
 import "./Header.css";
 import { useSelector } from "react-redux";
 
+import { FaBars } from "react-icons/fa";
+import { MdOutlineClose } from "react-icons/md";
+
 export default function Header({ setSearchQuery }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const count = useSelector((store) => store.cart.items.length);
@@ -47,38 +50,87 @@ export default function Header({ setSearchQuery }) {
           <img src="search.png" alt="search-icon" width={20} height={20} />
         </button>
       </div>
+
       <nav>
-        <ul>
-          <li>
+        <input type="checkbox" id="sidebar-active" />
+        <label htmlFor="sidebar-active" className="open-sidebar-button">
+          <FaBars size={20} />
+        </label>
+        <label htmlFor="sidebar-active" id="overlay"></label>
+        <div className="link-container">
+          <label htmlFor="sidebar-active" className="close-sidebar-button">
+            <MdOutlineClose size={40} color="white" />
+          </label>
+          <ul>
+            <li>
+              <Link to="/" className={` ${activeIndex === 0 ? "active" : ""}`}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/products"
+                className={` ${activeIndex === 1 ? "active" : ""}`}
+              >
+                Products
+              </Link>
+            </li>
+          </ul>
+          <div>
+            <div className="cart-container">
+              <span className="cart-icon">
+                <Link to="/cart">
+                  <img
+                    src="shopping-cart.png"
+                    alt="logo"
+                    width={30}
+                    height={20}
+                  />
+                </Link>
+                {count > 0 && <span className="count">{count}</span>}
+              </span>
+            </div>
+          </div>
+        </div>
+      </nav>
+      {/* <div>
+        <nav>
+          <input type="checkbox" id="sidebar-active" />
+          <label htmlFor="sidebar-active" className="open-sidebar-button">
+            <FaBars />
+          </label>
+          <label htmlFor="sidebar-active" id="overlay"></label>
+          <div className="links-container">
+            <label htmlFor="sidebar-active" className="close-sidebar-button">
+              <MdOutlineClose />
+            </label>
             <Link to="/" className={` ${activeIndex === 0 ? "active" : ""}`}>
               Home
             </Link>
-          </li>
-          <li>
             <Link
               to="/products"
               className={` ${activeIndex === 1 ? "active" : ""}`}
             >
               Products
             </Link>
-          </li>
-        </ul>
-        <div>
-          <div className="cart-container">
-            <span className="cart-icon">
-              <Link to="/cart">
-                <img
-                  src="shopping-cart.png"
-                  alt="logo"
-                  width={30}
-                  height={20}
-                />
-              </Link>
-              {count > 0 && <span className="count">{count}</span>}
-            </span>
+            <div>
+              <div className="cart-container">
+                <span className="cart-icon">
+                  <Link to="/cart">
+                    <img
+                      src="shopping-cart.png"
+                      alt="logo"
+                      width={30}
+                      height={20}
+                    />
+                  </Link>
+                  {count > 0 && <span className="count">{count}</span>}
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div> */}
     </div>
   );
 }

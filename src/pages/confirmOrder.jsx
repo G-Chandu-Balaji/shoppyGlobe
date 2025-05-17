@@ -19,14 +19,21 @@ export default function ConfirmOrder() {
     dispatch(clearCart());
 
     alert("Order Confirmed!");
-    navigate("/");
+    navigate("/orderConfirmed");
   }
   return (
     <div className="confirm-order">
-      <h2>Confirm Your Order</h2>
+      <div style={{ display: "flex", gap: ".5rem", marginBottom: "1rem" }}>
+        <img src="circle.png" alt="tick" width={50} height={50} />
+
+        <h2>Confirm your Order</h2>
+      </div>
       <div className="confirm-order-container">
         <section className="user-details">
-          <h4>Shipping Details</h4>
+          <div style={{ display: "flex", gap: ".5rem" }}>
+            <img src="shipped.png" alt="van" width={30} height={30} />
+            <h4>Shipping Details</h4>
+          </div>
           <div className="user-info">
             <p>Name:</p>
             <p>{userData.name}</p>
@@ -38,28 +45,47 @@ export default function ConfirmOrder() {
         </section>
 
         <section className="cart-items">
-          <h4>Items</h4>
+          <div style={{ display: "flex", gap: ".5rem" }}>
+            <img src="items.png" alt="items" width={30} height={30} />
+            <h4>Items</h4>
+          </div>
           {orders.length > 0 ? (
-            <ul>
+            <div className="grid-cart-items">
               {orders.map((item, index) => (
-                <li key={index}>
-                  {item.title} : ₹{item.price} x {item.quantity}
-                </li>
+                <>
+                  <p key={index}>{item.title} :</p>
+                  <p key={index + 100}>
+                    ₹{item.price} x {item.quantity}
+                  </p>
+                </>
               ))}
-            </ul>
+              <p>
+                <strong>Total Amount: </strong>
+              </p>
+              <p className="line-top">₹{totalAmount.toFixed(2)}</p>
+            </div>
           ) : (
             <p>Your cart is empty </p>
           )}
-          <p>
-            <strong>Total Amount: </strong>₹{totalAmount.toFixed(2)}
-          </p>
         </section>
       </div>
 
       {orders.length > 0 ? (
-        <button onClick={handleConfirmOrder}>Confirm Order</button>
+        <div className="buttons">
+          <button onClick={handleConfirmOrder} className="confirm-order-button">
+            Confirm Order
+          </button>
+          <button onClick={() => navigate("/cart")} className="cancel-button">
+            Cancel Order
+          </button>
+        </div>
       ) : (
-        <button onClick={() => navigate("/products")}>Add Items</button>
+        <button
+          onClick={() => navigate("/products")}
+          className="add-item-button"
+        >
+          Add Items
+        </button>
       )}
     </div>
   );
