@@ -18,7 +18,6 @@ export default function ConfirmOrder() {
   function handleConfirmOrder() {
     dispatch(clearCart());
 
-    alert("Order Confirmed!");
     navigate("/orderConfirmed");
   }
   return (

@@ -11,7 +11,6 @@ import { Link } from "react-router";
 
 export default function CartItem({ item }) {
   const dispatch = useDispatch();
-  console.log(item);
 
   return (
     <div className="cart-item" key={item.id}>

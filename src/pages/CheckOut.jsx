@@ -15,7 +15,6 @@ export default function CheckoutPage() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data); // Handle form data here
     dispatch(addUserData(data));
     alert("shipping address added sucessfully");
     navigate("/confirmOrder");

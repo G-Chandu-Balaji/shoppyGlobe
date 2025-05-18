@@ -91,8 +91,8 @@
 .add-to-cart {
   margin-top: 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: #165fe7;
-  border: 1px solid #092368;
+  background-color: #ffd814;
+  border: 1px solid #fcd200;
   border-radius: 0.3rem;
   cursor: pointer;
   transition: background-color 0.2s ease;

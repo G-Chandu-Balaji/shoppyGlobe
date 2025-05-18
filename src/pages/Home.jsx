@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ProductList from "../components/ProductList";
+
 import "./Home.css";
 import CategorySection from "../components/Categories";
 import { Link } from "react-router";

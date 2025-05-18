@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import useFetch from "../utils/useFetch";
 import "./ProductList.css";
 
-import ProductItem from "./ProductItem";
+import ProductItem from "../components/ProductItem";
 import { useOutletContext } from "react-router";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function ProductList() {
+  const [notFound, setNotFound] = useState(false);
   const [products, setProducts] = useState([]);
   const [sortChange, SetSortChange] = useState();
   const { data, loading, error } = useFetch();
@@ -20,10 +21,13 @@ export default function ProductList() {
             item.title.toLowerCase().includes(searchQuery.toLowerCase())
         )
       : data;
+    if (filteredProducts.length === 0) {
+      setNotFound(true);
+    } else {
+      setNotFound(false);
+    }
     setProducts(filteredProducts);
   }, [searchQuery, data]);
-
-  console.log(loading);
 
   useEffect(() => {
     let sorted = [...products];
@@ -69,6 +73,10 @@ export default function ProductList() {
         </select>
       </div>
       <div className="product-list">
+        {notFound && (
+          <p style={{ color: "red", minheight: "100vh" }}>No Product Found..</p>
+        )}
+
         {products.map((item) => (
           <ProductItem product={item} key={item.id} />
         ))}

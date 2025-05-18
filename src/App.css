@@ -1,18 +1,10 @@
-:root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --font-base: "Segoe UI", sans-serif;
-}
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-/* Base font scaling (affects rem units) */
 html {
-  /* font-size: clamp(15px, 1.5vw, 18px); */
   font-size: 16px;
 }
 
@@ -20,12 +12,11 @@ body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   line-height: 1.6;
 }
-/* Paragraph and general text use rem */
+
 p {
-  font-size: 1rem; /* Scales with html */
+  font-size: 1rem;
 }
 
-/* Headings use their own clamp for more control */
 h1 {
   font-size: clamp(2.5rem, 6vw, 4rem);
 }

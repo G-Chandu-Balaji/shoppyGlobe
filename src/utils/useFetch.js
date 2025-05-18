@@ -6,7 +6,6 @@ const useFetch = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // if (!) return;
     const controller = new AbortController(); // to clean up fetch on unmount
 
     async function fetchurl() {
@@ -20,7 +19,7 @@ const useFetch = () => {
           throw new Error(`Error: ${res.status}`);
         }
         const result = await res.json();
-        console.log("result", result);
+
         setData(result.products);
       } catch (err) {
         if (err.name !== "AbortError") {

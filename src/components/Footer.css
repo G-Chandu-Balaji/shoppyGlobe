@@ -8,6 +8,10 @@
     flex-direction: column;
     gap: 0.5rem;
   }
+  .name-logo {
+    display: flex;
+    justify-content: center;
+  }
   .footer-bottom {
     margin-top: 0.5rem;
   }

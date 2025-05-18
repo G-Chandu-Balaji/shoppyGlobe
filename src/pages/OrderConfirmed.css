@@ -18,11 +18,21 @@
   border-radius: 0.5rem;
 }
 
+@keyframes pop {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
 .order-confirmed .check-icon {
   width: 50px;
   height: 50px;
   fill: #28a745;
   margin-bottom: 20px;
+  animation: pop 1s ease-in-out infinite alternate;
 }
 
 .order-confirmed h1 {

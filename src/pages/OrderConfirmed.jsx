@@ -1,6 +1,7 @@
 import React from "react";
 import "./OrderConfirmed.css";
 import { RiShoppingBag4Line } from "react-icons/ri";
+import { Link } from "react-router";
 
 const OrderConfirmed = () => {
   return (
@@ -20,9 +21,9 @@ const OrderConfirmed = () => {
           inbox.
         </p>
         <p>Thank you ! for shopping with us</p>
-        <a href="/" className="btn">
+        <Link to="/" className="btn">
           Back to Home
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const newItem = action.payload;
-      console.log("inside redux", newItem);
+
       let existingitem = state.items.find((i) => i.id === newItem.id);
       if (existingitem) {
         if (!newItem.quantity) {
@@ -38,8 +38,6 @@ const cartSlice = createSlice({
     },
     clearCart: (state) => {
       state.items = [];
-      console.log("inside clear cart");
-      // state.orders = []
     },
     increaseQuantity: (state, action) => {
       const id = action.payload;

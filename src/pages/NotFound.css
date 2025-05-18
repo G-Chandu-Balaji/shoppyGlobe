@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   text-align: center;
   background: linear-gradient(135deg, #fceabb, #f8b500);
   color: #333;
@@ -72,5 +72,14 @@
   }
   100% {
     transform: translateY(0);
+  }
+}
+@media (max-width: 400px) {
+  .not-found-container img {
+    width: 150px;
+    height: 150px;
+  }
+  .not-found-container h1 {
+    font-size: 4rem;
   }
 }

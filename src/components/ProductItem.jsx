@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ProductItem.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 import StarRating from "./StarRating";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.cart.items);
   const discountedPrice = product.price;
   const discountPercent = product.discountPercentage;
   const originalPrice = (discountedPrice / (1 - discountPercent / 100)).toFixed(
@@ -24,7 +22,7 @@ const ProductCard = ({ product }) => {
         to={`/products/product_detail/${product.id}`}
         className="product-link"
       >
-        <img src={product.thumbnail} alt={product.title} />
+        <img src={product.thumbnail} alt={product.title} loading="lazy" />
         <p>{product.title}</p>
         <div className="price-section">
           <span className="discount-percentage">
