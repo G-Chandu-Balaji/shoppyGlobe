@@ -26,9 +26,13 @@ export default function Header({ setSearchQuery }) {
   }, [location.pathname]);
 
   const handleSearch = () => {
-    setSearchQuery(searchInput);
-    navigate("/products");
-    setSearchInput("");
+    if (searchInput === "") {
+      alert("Enter text in search bar...");
+    } else {
+      setSearchQuery(searchInput);
+      navigate("/products");
+      setSearchInput("");
+    }
   };
 
   return (

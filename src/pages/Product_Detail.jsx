@@ -21,6 +21,28 @@ export default function ProductDetailPage() {
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState("");
   const [error, setError] = useState(null);
+  async function fetchProduct() {
+    try {
+      const res = await fetch(`https://dummyjson.com/products/${id}`);
+
+      if (!res.ok) {
+        setLoading(false);
+
+        if (res.status === 404) {
+          throw new Error(`Resource not found (404)`);
+        } else {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+      }
+      const data = await res.json();
+      setProduct(data);
+      setQuantity(data.minimumOrderQuantity);
+      setNewPrice(data.price);
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
 
   useEffect(() => {
     if (items.length > 0) {
@@ -30,30 +52,10 @@ export default function ProductDetailPage() {
         setProduct(item);
         setNewPrice(item.Newprice);
         setLoading(false);
+      } else {
+        fetchProduct();
       }
     } else {
-      async function fetchProduct() {
-        try {
-          const res = await fetch(`https://dummyjson.com/products/${id}`);
-
-          if (!res.ok) {
-            setLoading(false);
-
-            if (res.status === 404) {
-              throw new Error(`Resource not found (404)`);
-            } else {
-              throw new Error(`HTTP error! Status: ${res.status}`);
-            }
-          }
-          const data = await res.json();
-          setProduct(data);
-          setQuantity(data.minimumOrderQuantity);
-          setNewPrice(data.price);
-          setLoading(false);
-        } catch (err) {
-          setError(err.message);
-        }
-      }
       fetchProduct();
     }
   }, [id, items]);

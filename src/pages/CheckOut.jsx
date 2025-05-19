@@ -52,7 +52,13 @@ export default function CheckoutPage() {
 
         <label>Shipping Address</label>
         <textarea
-          {...register("address", { required: "Address is required" })}
+          {...register("address", {
+            required: "Address is required",
+            minLength: {
+              value: 10,
+              message: "Address must be at least 20 characters long",
+            },
+          })}
           className={errors.address ? "input-error" : ""}
         />
         {errors.address && (

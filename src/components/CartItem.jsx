@@ -38,14 +38,14 @@ export default function CartItem({ item }) {
         <div className="quantity-controls">
           <button
             onClick={() => dispatch(decreaseQuantity(item.id))}
-            disabled={item.quantity < item.minimumOrderQuantity}
+            disabled={item.quantity <= item.minimumOrderQuantity}
           >
             -
           </button>
           <span>{item.quantity}</span>
           <button
             onClick={() => dispatch(increaseQuantity(item.id))}
-            disabled={item.quantity > item.stock}
+            disabled={item.quantity >= item.stock}
           >
             +
           </button>

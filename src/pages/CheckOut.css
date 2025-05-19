@@ -10,7 +10,7 @@ form {
   border: 1px solid #ddd;
   border-radius: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: auto;
+  margin: 0.5rem;
 }
 
 .checkout-page h2 {
@@ -79,10 +79,6 @@ textarea {
   background-color: #1e40af;
 }
 
-.input-error {
-  border: 2px solid red;
-}
-
 /* Error message styling */
 .error-message {
   color: red;
@@ -90,4 +86,8 @@ textarea {
   font-size: 0.875rem;
   margin-bottom: 10px;
   display: block;
+}
+
+.checkout-page .input-error {
+  border: 2px solid red;
 }
