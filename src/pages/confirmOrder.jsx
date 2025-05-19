@@ -23,14 +23,14 @@ export default function ConfirmOrder() {
   return (
     <div className="confirm-order">
       <div style={{ display: "flex", gap: ".5rem", marginBottom: "1rem" }}>
-        <img src="circle.png" alt="tick" width={50} height={50} />
+        <img src="/circle.png" alt="tick" width={50} height={50} />
 
         <h2>Confirm your Order</h2>
       </div>
       <div className="confirm-order-container">
         <section className="user-details">
           <div style={{ display: "flex", gap: ".5rem" }}>
-            <img src="shipped.png" alt="van" width={30} height={30} />
+            <img src="/shipped.png" alt="van" width={30} height={30} />
             <h4>Shipping Details</h4>
           </div>
           <div className="user-info">
@@ -45,18 +45,18 @@ export default function ConfirmOrder() {
 
         <section className="cart-items">
           <div style={{ display: "flex", gap: ".5rem" }}>
-            <img src="items.png" alt="items" width={30} height={30} />
+            <img src="/items.png" alt="items" width={30} height={30} />
             <h4>Items</h4>
           </div>
           {orders.length > 0 ? (
             <div className="grid-cart-items">
               {orders.map((item, index) => (
-                <>
-                  <p key={index}>{item.title} :</p>
-                  <p key={index + 100}>
+                <React.Fragment key={index}>
+                  <p>{item.title} :</p>
+                  <p>
                     ₹{item.price} x {item.quantity}
                   </p>
-                </>
+                </React.Fragment>
               ))}
               <p>
                 <strong>Total Amount: </strong>

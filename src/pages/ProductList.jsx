@@ -1,26 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import useFetch from "../utils/useFetch";
 import "./ProductList.css";
 
-import ProductItem from "../components/ProductItem";
 import { useOutletContext } from "react-router";
 import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorElement from "../components/ErrorElement";
+import ProductNotFound from "../components/ProductNotFound";
+const ProductItem = lazy(() => import("../components/ProductItem"));
 
 export default function ProductList() {
   const [notFound, setNotFound] = useState(false);
   const [products, setProducts] = useState([]);
-  const [sortChange, SetSortChange] = useState();
+  const [sortChange, SetSortChange] = useState([]);
   const { data, loading, error } = useFetch();
   const { searchQuery } = useOutletContext();
 
   useEffect(() => {
-    const filteredProducts = searchQuery
-      ? data.filter(
-          (item) =>
-            item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.title.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      : data;
+    const filteredProducts =
+      data && searchQuery
+        ? data.filter(
+            (item) =>
+              item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              item.title.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+        : data || [];
     if (filteredProducts.length === 0) {
       setNotFound(true);
     } else {
@@ -56,14 +59,21 @@ export default function ProductList() {
         <LoadingSpinner />
       </div>
     );
-  if (error) return <p>Error: {error}</p>;
+  if (error)
+    return (
+      <div>
+        <ErrorElement error={error} />
+      </div>
+    );
 
   return (
     <div>
       <div className="sort-container">
         <p>{`${products.length} Products`}</p>
 
-        <label htmlFor="sort">Sort by:</label>
+        <label htmlFor="sort" aria-label="Sort products by">
+          Sort by:
+        </label>
         <select id="sort" onChange={(e) => SetSortChange(e.target.value)}>
           <option value="">-- Select --</option>
           <option value="price-asc">Price: Low to High</option>
@@ -73,13 +83,12 @@ export default function ProductList() {
         </select>
       </div>
       <div className="product-list">
-        {notFound && (
-          <p style={{ color: "red", minheight: "100vh" }}>No Product Found..</p>
-        )}
-
-        {products.map((item) => (
-          <ProductItem product={item} key={item.id} />
-        ))}
+        {notFound && searchQuery && <ProductNotFound />}
+        <Suspense fallback={<LoadingSpinner />}>
+          {products.map((item) => (
+            <ProductItem product={item} key={item.id} />
+          ))}
+        </Suspense>
       </div>
     </div>
   );

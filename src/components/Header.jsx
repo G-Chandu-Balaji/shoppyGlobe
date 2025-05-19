@@ -35,7 +35,7 @@ export default function Header({ setSearchQuery }) {
     <div className="header">
       <div className="logo">
         <span>
-          <img src="headerlogo.png" alt="logo" width={40} height={40} />
+          <img src="/headerlogo.png" alt="logo" width={40} height={40} />
         </span>
         <h3 className="title">ShoppyGlobe</h3>
       </div>
@@ -47,7 +47,7 @@ export default function Header({ setSearchQuery }) {
           onChange={(e) => setSearchInput(e.target.value)}
         />
         <button onClick={handleSearch}>
-          <img src="search.png" alt="search-icon" width={20} height={20} />
+          <img src="/search.png" alt="search-icon" width={20} height={20} />
         </button>
       </div>
 
@@ -81,7 +81,7 @@ export default function Header({ setSearchQuery }) {
               <span className="cart-icon">
                 <Link to="/cart">
                   <img
-                    src="shopping-cart.png"
+                    src="/shopping-cart.png"
                     alt="logo"
                     width={30}
                     height={20}

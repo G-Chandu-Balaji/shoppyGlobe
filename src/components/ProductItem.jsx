@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 import StarRating from "./StarRating";
 
-const ProductCard = ({ product }) => {
+const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
   const discountedPrice = product.price;
   const discountPercent = product.discountPercentage;
@@ -56,4 +56,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default ProductItem;

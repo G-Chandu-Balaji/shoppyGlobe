@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import "./Product_Detail.css";
+import ErrorElement from "../components/ErrorElement";
 import LoadingSpinner from "../components/LoadingSpinner";
 import QuantityInput from "../components/QuantityButton";
 import StarRating from "../components/StarRating";
@@ -19,6 +20,7 @@ export default function ProductDetailPage() {
   const [newprice, setNewPrice] = useState(1);
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (items.length > 0) {
@@ -33,13 +35,23 @@ export default function ProductDetailPage() {
       async function fetchProduct() {
         try {
           const res = await fetch(`https://dummyjson.com/products/${id}`);
+
+          if (!res.ok) {
+            setLoading(false);
+
+            if (res.status === 404) {
+              throw new Error(`Resource not found (404)`);
+            } else {
+              throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+          }
           const data = await res.json();
           setProduct(data);
           setQuantity(data.minimumOrderQuantity);
           setNewPrice(data.price);
           setLoading(false);
-        } catch (error) {
-          console.error("Error fetching product:", error);
+        } catch (err) {
+          setError(err.message);
         }
       }
       fetchProduct();
@@ -75,7 +87,12 @@ export default function ProductDetailPage() {
         <LoadingSpinner />
       </div>
     );
-
+  if (error)
+    return (
+      <div>
+        <ErrorElement error={error} />
+      </div>
+    );
   return (
     <>
       <div className="product-detail-page">
@@ -139,6 +156,8 @@ export default function ProductDetailPage() {
             <p>{product.weight}gms</p>
             <p>Warranty</p>
             <p>{product.warrantyInformation}</p>
+            <p>Return Policy</p>
+            <p>{product.returnPolicy}</p>
           </div>
         </div>
         <div className="right-section">

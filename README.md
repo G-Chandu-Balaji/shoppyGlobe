@@ -69,6 +69,8 @@ shoppy-globe/
 │   │   ├── LoadingSpinner.jsx
 │   │   ├── QuantityButton.jsx
 │   │   ├── StarRating.jsx
+│   │   ├── ErrorElement.jsx
+│   │   ├── ProductNotFound.jsx
 │   │   └── ... css files for each component
 │   ├── pages/
 │   │   ├── Home.jsx

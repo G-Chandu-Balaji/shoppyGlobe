@@ -51,8 +51,8 @@ export default function CartPage() {
 
           <div className="cart-summary">
             <div className="cart-summary-subtotal">
-              <h2>Subtotal ({cartItems.length} items) :</h2>
-              <h2 className="total">₹{finalAmount.toFixed(2)}</h2>
+              <p>Subtotal ({cartItems.length} items) :</p>
+              <p className="total">₹{finalAmount.toFixed(2)}</p>
             </div>
             <p className="discount-amount">
               Discount: -₹{totalDiscount.toFixed(2)}

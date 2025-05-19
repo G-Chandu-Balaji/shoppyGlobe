@@ -16,7 +16,7 @@ const useFetch = () => {
           signal: controller.signal,
         });
         if (!res.ok) {
-          throw new Error(`Error: ${res.status}`);
+          throw new Error(`Error: ${res.status} Invalid Url`);
         }
         const result = await res.json();
 

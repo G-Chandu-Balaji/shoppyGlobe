@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import { Link } from "react-router";
 
 export default function Footer() {
   return (
@@ -7,13 +8,13 @@ export default function Footer() {
       <div className="footer-content">
         <div className="footer-section">
           <div className="name-logo">
-            <img src="headerlogo.png" alt="logo" width={30} height={30} />
+            <img src="/headerlogo.png" alt="logo" width={30} height={30} />
             <h4>ShoppyGlobe</h4>
           </div>
           <p>Your one-stop shop for everything trendy and essential</p>
-          <a href="#">
+          <Link to="https://github.com/G-Chandu-Balaji/shoppyGlobe">
             <button>GitHub Link</button>
-          </a>
+          </Link>
         </div>
 
         <div className="footer-section">

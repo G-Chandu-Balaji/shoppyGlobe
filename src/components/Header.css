@@ -28,7 +28,7 @@
   }
 }
 
-@media (max-width: 497px) {
+@media (max-width: 562px) {
   .header {
     padding-top: 0.5rem;
     width: 100%;
@@ -37,13 +37,10 @@
     gap: 1rem;
     padding-bottom: 1rem;
   }
-  ca .header .search-bar {
+  .header .search-bar {
     width: 90vw;
   }
   .header nav {
-    /* position: relative;
-    top: -85px;
-    right: -167px; */
     position: absolute;
     top: 10px;
     right: -10px;
@@ -199,10 +196,16 @@ nav {
     top: 0;
     right: -100%;
     z-index: 10;
-    width: 40vw;
+    width: 25vw;
     background-color: rgba(0, 0, 0, 0.925);
     color: white;
     transition: 0.75s ease-out;
+  }
+
+  @media (max-width: 472px) {
+    .link-container {
+      width: 33vw;
+    }
   }
   .open-sidebar-button,
   .close-sidebar-button {
@@ -233,6 +236,7 @@ nav {
     top: 0;
     left: 0;
     z-index: 9;
+    background: rgba(255, 255, 255, 0.571);
   }
   li .active {
     color: black;
