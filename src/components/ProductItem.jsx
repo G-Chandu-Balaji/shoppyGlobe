@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import "./ProductItem.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 import StarRating from "./StarRating";
+import { useEffect, useState } from "react";
 
 const ProductItem = ({ product }) => {
+  const items = useSelector((store) => store.cart.items);
+  const [isInCart, setIsInCart] = useState(false);
   const dispatch = useDispatch();
   const discountedPrice = product.price;
   const discountPercent = product.discountPercentage;
@@ -12,12 +15,23 @@ const ProductItem = ({ product }) => {
     2
   );
 
+  useEffect(() => {
+    const x = items.filter((ele) => ele.id === product.id)[0];
+
+    if (x) {
+      setIsInCart(true);
+    } else {
+      setIsInCart(false);
+    }
+  }, []);
+
   function handleadditem() {
     dispatch(addItem(product));
+    setIsInCart(true);
   }
 
   return (
-    <div className="product-card">
+    <div className={`product-card ${isInCart ? "gray-card" : ""}`}>
       <Link
         to={`/products/product_detail/${product.id}`}
         className="product-link"

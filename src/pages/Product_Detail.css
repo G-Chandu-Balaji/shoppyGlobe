@@ -62,7 +62,6 @@
 }
 
 .image-gallery {
-  /* order: 0; */
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -78,21 +77,10 @@
   border-radius: 0.25rem;
 }
 
-.middle-section {
-}
-
 .middle-section .title {
   font-size: 1.7rem;
   font-weight: lighter;
   color: rgb(52, 45, 45);
-}
-
-.brand,
-.rating,
-.description,
-.stock,
-.category {
-  /* margin-top: 0.5rem; */
 }
 
 .right-section {
@@ -132,7 +120,6 @@
 
 .buy-now {
   background-color: #f0c14b;
-  /* background-color: #ffd814; */
 
   border: 1px solid #a88734;
 }
@@ -202,7 +189,6 @@
 .review-section {
   margin-top: 3rem;
   border-top: 1px solid #ddd;
-  /* padding-top: 1rem; */
 }
 .review-section h3 {
   font-weight: 400;

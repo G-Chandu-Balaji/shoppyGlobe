@@ -6,7 +6,6 @@
 }
 
 .hero-section h1 {
-  /* font-size: 3rem; */
   font-weight: 800;
   background: linear-gradient(to right, blue, green);
   background-clip: text;
@@ -131,7 +130,6 @@
   background-clip: text;
   color: transparent;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
-  /* border-right: 3px solid red; The typewriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto;
   letter-spacing: 6px;

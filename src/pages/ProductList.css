@@ -5,6 +5,9 @@
   justify-content: space-evenly;
   row-gap: 1rem;
 }
+.gray-card {
+  filter: opacity(50%);
+}
 
 .sort-container {
   margin-left: 2rem;

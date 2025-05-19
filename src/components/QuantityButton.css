@@ -1,7 +1,7 @@
 .quantity-input {
   display: flex;
   align-items: center;
-  /* border: 2px solid #3498db; */
+
   border-radius: 4px;
   overflow: hidden;
   gap: 0.5rem;
